@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Custom suite]" parallel="none">
+  <test name="TestsMyObject(failed)" parallel="none">
+    <classes>
+      <class name="myobject.Crash">
+        <methods>
+          <include name="tearDownMethod"/>
+          <include name="testEdit"/>
+          <include name="setTestBase"/>
+          <include name="tearDownTest"/>
+        </methods>
+      </class> <!-- myobject.Crash -->
+    </classes>
+  </test> <!-- TestsMyObject(failed) -->
+</suite> <!-- Failed suite [Custom suite] -->

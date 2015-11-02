@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite verbose="0" name="Failed suite [Failed suite [Custom suite]]" parallel="none">
+  <test name="TestsMyObject(failed)(failed)" parallel="none">
+    <classes>
+      <class name="PLA">
+        <methods>
+          <include name="setUpTest"/>
+          <include name="testEdit"/>
+          <include name="setUpMethod"/>
+          <include name="tearDown"/>
+          <include name="testAdd"/>
+          <include name="testDelete"/>
+        </methods>
+      </class> <!-- PLA -->
+    </classes>
+  </test> <!-- TestsMyObject(failed)(failed) -->
+</suite> <!-- Failed suite [Failed suite [Custom suite]] -->

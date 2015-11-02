@@ -1,0 +1,29 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0" is_locked="false">
+    <option name="myName" value="Project Default" />
+    <option name="myLocal" value="false" />
+    <inspection_tool class="groupsTestNG" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="groups">
+        <value>
+          <list size="15">
+            <item index="0" class="java.lang.String" itemvalue="add" />
+            <item index="1" class="java.lang.String" itemvalue="edit" />
+            <item index="2" class="java.lang.String" itemvalue="delete" />
+            <item index="3" class="java.lang.String" itemvalue="empty" />
+            <item index="4" class="java.lang.String" itemvalue="addBaC" />
+            <item index="5" class="java.lang.String" itemvalue="addTD" />
+            <item index="6" class="java.lang.String" itemvalue="addObject" />
+            <item index="7" class="java.lang.String" itemvalue="addBaCbyObject" />
+            <item index="8" class="java.lang.String" itemvalue="exclude" />
+            <item index="9" class="java.lang.String" itemvalue="include" />
+            <item index="10" class="java.lang.String" itemvalue="addTDbyObject" />
+            <item index="11" class="java.lang.String" itemvalue="addDSByObject" />
+            <item index="12" class="java.lang.String" itemvalue="addDSByTD" />
+            <item index="13" class="java.lang.String" itemvalue="activate" />
+            <item index="14" class="java.lang.String" itemvalue="deactivate" />
+          </list>
+        </value>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>

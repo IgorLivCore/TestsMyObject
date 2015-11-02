@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Удаление]">
+  <test name="Удаление(failed)">
+    <groups>
+      <run>
+        <include name="delete"/>
+      </run>
+    </groups>
+    <classes>
+      <class name="myobject.PLA">
+        <methods>
+          <include name="tearDownMethod"/>
+          <include name="setUpTest"/>
+          <include name="tearDownTest"/>
+          <include name="setUpMethod"/>
+          <include name="testDelete"/>
+        </methods>
+      </class> <!-- myobject.PLA -->
+      <class name="myobject.DangerSubstance">
+        <methods>
+          <include name="tearDownMethod"/>
+          <include name="testDeleteForeign500m"/>
+          <include name="testDeletebyTD"/>
+          <include name="setUpMethod"/>
+          <include name="testDeletebyObject"/>
+        </methods>
+      </class> <!-- myobject.DangerSubstance -->
+      <class name="myobject.TechnicalDevice">
+        <methods>
+          <include name="tearDownMethod"/>
+          <include name="setUpMethod"/>
+          <include name="testDelete"/>
+        </methods>
+      </class> <!-- myobject.TechnicalDevice -->
+      <class name="myobject.BuildAndConstruction">
+        <methods>
+          <include name="tearDownMethod"/>
+          <include name="setUpMethod"/>
+          <include name="testDelete"/>
+        </methods>
+      </class> <!-- myobject.BuildAndConstruction -->
+      <class name="myobject.Accident">
+        <methods>
+          <include name="tearDownMethod"/>
+          <include name="testDelete"/>
+          <include name="setUpMethod"/>
+        </methods>
+      </class> <!-- myobject.Accident -->
+      <class name="myobject.Element">
+        <methods>
+          <include name="tearDownMethod"/>
+          <include name="setUpMethod"/>
+          <include name="testDelete"/>
+        </methods>
+      </class> <!-- myobject.Element -->
+      <class name="myobject.Incident">
+        <methods>
+          <include name="tearDownMethod"/>
+          <include name="setUpMethod"/>
+          <include name="testDelete"/>
+        </methods>
+      </class> <!-- myobject.Incident -->
+      <class name="myobject.Object">
+        <methods>
+          <include name="tearDownMethod"/>
+          <include name="testDelete"/>
+          <include name="setUpMethod"/>
+        </methods>
+      </class> <!-- myobject.Object -->
+    </classes>
+  </test> <!-- Удаление(failed) -->
+</suite> <!-- Failed suite [Удаление] -->

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<!--нужно сделать в Base.MOTestBase switch с выбором браузера по заданному параметру-->
+
+<suite name="Add">
+    <test name="Add">
+        <groups>
+            <run>
+                <include name="add"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="myobject.Accident"/>
+            <class name="myobject.Company"/>
+            <class name="myobject.Filial"/>
+            <class name="myobject.Crash"/>
+            <class name="myobject.Element"/>
+            <class name="myobject.Filial"/>
+            <class name="myobject.Incident"/>
+            <class name="myobject.Object"/>
+        </classes>
+    </test>
+</suite>

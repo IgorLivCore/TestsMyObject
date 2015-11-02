@@ -1,0 +1,35 @@
+<dataset>
+
+    <object name="DSName"
+            code="DSCode"
+            year="2010"
+            description="DSDescription"
+            address="DSAddress"
+            danger_class="24"
+            owner="107" visible="1"
+            kladr="987654321"
+            room="25"
+            house="52"
+
+            />
+
+    <accident object="1"
+              technical_device="1"
+              superviaion_kind_id="1"
+              date="2014-01-01" time="12:00:00"
+              character="DSCharacter"
+              description="DSDescription"
+              reason="DSReason"
+              owner="1" visible="1"
+              act_date="2014-02-01" act_name="DSActName"
+              item_number="DSItemNumber"
+              economic_damage="250000"
+              idle_time="250" meter="дни"
+              order_numer="DSOrderNumber" order_date="2014-03-01"
+              comission_findings="DSComissionFindings"
+              is_push="0"
+              penalties="DSPenalties"
+              place="DSPlace"
+            />
+
+</dataset>

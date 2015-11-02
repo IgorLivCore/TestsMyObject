@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<!--нужно сделать в Base.MOTestBase switch с выбором браузера по заданному параметру-->
+
+<suite name="Edit">
+    <test name="Edit">
+        <groups>
+            <run>
+                <include name="edit"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="myobject.Accident"/>
+            <class name="myobject.Certification"/>
+            <class name="myobject.Company"/>
+            <class name="myobject.Crash"/>
+            <class name="myobject.DangerSubstance"/>
+            <class name="myobject.Element"/>
+            <class name="myobject.Employee"/>
+            <class name="myobject.ExplosiveLoss"/>
+
+        </classes>
+    </test>
+</suite>

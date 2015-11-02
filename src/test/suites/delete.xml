@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<!--нужно сделать в Base.MOTestBase switch с выбором браузера по заданному параметру-->
+
+<suite name="Удаление">
+    <test name="Удаление НС">
+        <groups>
+            <run>
+                <include name="delete"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="myobject.Accident">
+                <methods> <include name="testAdd"/> </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Удаление опасного вещества">
+        <groups>
+            <run>
+                <include name="delete"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="myobject.DangerSubstance">
+                <methods> <include name="testAdd"/> </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Удаление подобъекта">
+        <groups>
+            <run>
+                <include name="delete"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="myobject.Element">
+                <methods> <include name="testAdd"/> </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Удаление инцидента">
+        <groups>
+            <run>
+                <include name="delete"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="myobject.Incident">
+                <methods> <include name="testAdd"/> </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Удаление объекта">
+        <groups>
+            <run>
+                <include name="delete"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="myobject.Object">
+                <methods> <include name="testAdd"/> </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Удаление ТУ">
+        <groups>
+            <run>
+                <include name="delete"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="myobject.TechnicalDevice">
+                <methods> <include name="testAdd"/> </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Удаление ЗиС">
+        <groups>
+            <run>
+                <include name="delete"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="myobject.BuildAndConstruction">
+                <methods> <include name="testAdd"/> </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Удаление ПЛА">
+        <groups>
+            <run>
+                <include name="delete"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="myobject.PLA">
+                <methods> <include name="testAdd"/> </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

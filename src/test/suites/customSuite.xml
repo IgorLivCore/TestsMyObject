@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Custom">
+    <parameter name="timeout" value="30"/>
+
+    <!--<test name="Предприятие">
+        <classes>
+            <class name="myobject.Company"/>
+        </classes>
+    </test>
+    <test name="Филиал">
+        <classes>
+            <class name="myobject.Filial"/>
+        </classes>
+    </test>-->
+    <test name="СП">
+        <classes>
+            <class name="myobject.Team"/>
+        </classes>
+    </test>
+    <test name="Должность">
+        <classes>
+            <class name="myobject.Position"/>
+        </classes>
+    </test>
+    <test name="Сотрудник">
+        <classes>
+            <class name="myobject.Employee"/>
+        </classes>
+    </test>
+    <test name="Аттестация">
+        <classes>
+            <class name="myobject.Certification"/>
+        </classes>
+    </test>
+    <test name="Ответственность">
+        <classes>
+            <class name="myobject.Responsibility"/>
+        </classes>
+    </test>
+    <test name="Сведения в РТН">
+        <classes>
+            <class name="myobject.EmployeeCount"/>
+        </classes>
+    </test>
+    <test name="Объект">
+        <classes>
+            <class name="myobject.Object"/>
+        </classes>
+    </test>
+    <test name="ПЛА">
+        <classes>
+            <class name="myobject.PLA"/>
+        </classes>
+    </test>
+    <test name="Подготовка персонала">
+        <classes>
+            <class name="myobject.ObjectCrashTraining"/>
+        </classes>
+    </test>
+    <test name="Подобъект">
+        <classes>
+            <class name="myobject.Element"/>
+        </classes>
+    </test>
+    <test name="Объекты в 500м">
+        <classes>
+            <class name="myobject.Objects500m"/>
+        </classes>
+    </test>
+    <test name="ТУ">
+        <classes>
+            <class name="myobject.TechnicalDevice"/>
+        </classes>
+    </test>
+    <test name="Модернизация ТУ">
+        <classes>
+            <class name="myobject.TDModernization"/>
+        </classes>
+    </test>
+    <test name="Опасное вещество">
+        <classes>
+            <class name="myobject.DangerSubstance"/>
+        </classes>
+    </test>
+    <test name="ЗиС">
+        <classes>
+            <class name="myobject.BuildAndConstruction"/>
+        </classes>
+    </test>
+    <test name="Инцидент">
+        <classes>
+            <class name="myobject.Incident"/>
+        </classes>
+    </test>
+    <test name="НС">
+        <classes>
+            <class name="myobject.Accident"/>
+        </classes>
+    </test>
+    <test name="Авария">
+        <classes>
+            <class name="myobject.Crash"/>
+        </classes>
+    </test>
+    <test name="Утрата ВМ">
+        <classes>
+            <class name="myobject.ExplosiveLoss"/>
+        </classes>
+    </test>
+    <test name="Документ">
+        <classes>
+            <class name="myobject.Document"/>
+        </classes>
+    </test>
+    <test name="Мероприятие">
+        <classes>
+            <class name="myobject.Action"/>
+        </classes>
+    </test>
+    <test name="Выполнение мероприятия">
+        <classes>
+            <class name="myobject.ActionExecution"/>
+        </classes>
+    </test>
+    <test name="Перенос сроков мероприятия">
+        <classes>
+            <class name="myobject.ActionTransferDeadline"/>
+        </classes>
+    </test>
+    <test name="План">
+        <classes>
+            <class name="myobject.Plan"/>
+        </classes>
+    </test>
+    <test name="Предписание">
+        <classes>
+            <class name="myobject.Prescription"/>
+        </classes>
+    </test>
+    <test name="Нарушение предписания">
+        <classes>
+            <class name="myobject.PrescriptionViolation"/>
+        </classes>
+    </test>
+    <test name="Протокол ВП">
+        <classes>
+            <class name="myobject.Protocol"/>
+        </classes>
+    </test>
+    <test name="Нарушение протокола ВП">
+        <classes>
+            <class name="myobject.ProtocolViolation"/>
+        </classes>
+    </test>
+    <test name="Нормативный документ">
+        <classes>
+            <class name="myobject.RegulatoryDocuments"/>
+        </classes>
+    </test>
+    <test name="Тип нормативного документа">
+        <classes>
+            <class name="myobject.RegulatoryDocumentsType"/>
+        </classes>
+    </test>
+
+
+    <!--
+
+
+    <test name="Инцидент">
+        <classes>
+            <class name="myobject.Incident"/>
+        </classes>
+    </test>-
+
+
+
+
+    <test name="TestIE">
+         <parameter name="brwsr-path" value="*firefox"/>
+         <classes>
+             <class name="myobject.Accident"/>
+         </classes>
+     </test> -->
+</suite>
