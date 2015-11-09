@@ -164,6 +164,16 @@
             <class name="myobject.RegulatoryDocumentsType"/>
         </classes>
     </test>
+    <test name="Пользователь">
+        <classes>
+            <class name="myobject.User"/>
+        </classes>
+    </test>
+    <test name="Роль пользователей">
+        <classes>
+            <class name="myobject.UserRole"/>
+        </classes>
+    </test>
 
 
     <!--
