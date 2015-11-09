@@ -13,5 +13,7 @@ hs_err_pid*
 
 #результаты тестов
 /src/test/output
+/.idea/workspace.xml
+/.idea/vcs.xml
 /src/test/screenshots
 /target
