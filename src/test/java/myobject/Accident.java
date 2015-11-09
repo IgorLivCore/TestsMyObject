@@ -303,7 +303,7 @@ public class Accident extends MOTestBase {
 
         goTo("Инциденты", "Несчастные случаи");
         selectRow(0);
-        assertEquals(revisionValue("Место НС"), data,"НС не добавлен");
+        assertEquals(revisionValue("Место НС"), data, "НС не изменен");
     }
 
     @Test(priority=3, groups = { "edit","empty" })
