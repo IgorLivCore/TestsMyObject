@@ -1,17 +1,14 @@
-package extra;
+package Listeners;
 
 /**
  * Created by natalia on 16.01.15.
  */
 import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.Augmentable;
 import org.openqa.selenium.support.events.AbstractWebDriverEventListener;
-
-import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 
 @Augmentable
 public class ListenerThatWaitsBeforeAnyAction extends AbstractWebDriverEventListener {
