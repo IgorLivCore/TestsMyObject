@@ -312,7 +312,7 @@ public class Crash extends MOTestBase {
 //        assertEquals(revisionValue("№ пункта: " + data),  data1,"Данные об ответственных за НС не добавлены"); // из-за кривой верстки не получается достать значение - проверить сложно
     }
 
-    @Test(priority=2, groups = { "edit" })
+    @Test(priority=4, groups = { "edit" })
     public void testEdit() throws Exception
     {
         operation="изменение";
@@ -346,7 +346,6 @@ public class Crash extends MOTestBase {
         select("Техническое устройство", 0);
 
         legend="Ликвидирующие организации";
-        //button("Добавить");
         input("Наименование организации","ТестСозданиеАварииЛиквидирующаяОрганизация");
 
         legend="Кто сообщил об аварии";
@@ -369,7 +368,7 @@ public class Crash extends MOTestBase {
         assertEquals(revisionValue("Место аварии"), data,"Авария не добавлена");
     }
 
-    @Test(priority=3, groups = { "edit" })
+    @Test(priority=4, groups = { "edit" })
     public void testEditEmpty() throws Exception
     {
         expected_result=false;

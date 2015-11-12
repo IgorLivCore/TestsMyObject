@@ -34,7 +34,7 @@ public abstract class TestBase {
 
         regularDriver = WebDriverFactory.getDriver(browser);
         driver = new EventFiringWebDriver(regularDriver);
-        driver.register(new ListenerThatWaitsBeforeAnyAction(driver,2000, TimeUnit.MILLISECONDS));//для замедления
+        driver.register(new ListenerThatWaitsBeforeAnyAction(driver,500, TimeUnit.MILLISECONDS));//для замедления
         //driver.register(new ListenerThatHiglilightsElements(1,500, TimeUnit.MILLISECONDS));//для замедления и подсветки
     }
 

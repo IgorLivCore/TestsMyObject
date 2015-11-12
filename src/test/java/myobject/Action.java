@@ -51,7 +51,7 @@ public class Action extends MOTestBase {
 
         selectRow(0);
         legend = "Общая информация";
-        assertEquals(revisionValue("Код"), data,"Мероприятие не добавлено");
+        assertEquals(revisionValue("Код"), data,"Мероприятие не добавлено" + getScreenshot("fail"));
     }
 
     @Test(priority = 20, groups = { "empty","add" })
@@ -92,7 +92,7 @@ public class Action extends MOTestBase {
 
         selectRow(0);
         legend = "Общая информация";
-        assertEquals(revisionValue("Код"), data,"Мероприятие не изменено");
+        assertEquals(revisionValue("Код"), data,"Мероприятие не изменено" + getScreenshot("fail"));
     }
 
     @Test(priority = 211, groups = { "empty","edit" })
@@ -129,7 +129,7 @@ public class Action extends MOTestBase {
         goTo("Мероприятия");
         if (!MOWebdriver.isListEmpty()){
             selectRow(0);
-            assertNotEquals(revisionValue("Код"), data, "Мероприятие не удалено");
+            assertNotEquals(revisionValue("Код"), data, "Мероприятие не удалено" + getScreenshot("fail"));
         }
     }
 }

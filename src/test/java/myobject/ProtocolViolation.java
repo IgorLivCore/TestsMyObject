@@ -29,7 +29,7 @@ public class ProtocolViolation extends MOTestBase {
     }
 
     @Test(priority = 10, groups = { "add"})
-    public void testAdd() throws Exception{
+    public void testAdd() throws Exception {
         operation="добавление";
         add();
 
@@ -70,7 +70,7 @@ public class ProtocolViolation extends MOTestBase {
     }
 
     @Test(priority = 20, groups = { "empty","add" })
-    public void testAddEmpty() throws Exception{
+    public void testAddEmpty() throws Exception {
         operation="добавление";
         expected_result=false;
         add();
@@ -101,7 +101,7 @@ public class ProtocolViolation extends MOTestBase {
     }
 
     @Test(priority = 210, groups = { "edit" })
-    public void testEdit() throws Exception{
+    public void testEdit() throws Exception {
         operation="изменение";
         selectRow(0);
         edit();

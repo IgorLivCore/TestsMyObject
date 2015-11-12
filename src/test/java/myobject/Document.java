@@ -13,20 +13,22 @@ import static Base.MOWebdriver.*;
 /**
  * Created by natalia on 16.02.15.
  *
- * Тип документа - где создаётся
+ * Тип документа                    - где создаётся
  *
- * ПЛА - Объект
- * Универсальный - Предприятие
- * Сертификаты тех. устройств - ТУ
- * Разрешительный - Предприятие
- * Заключение ЭПБ - ТУ
- * Документация СУПБ - Предприятие
- * Полис страхования - Объект
- * Подтверающий док. о выполнении предисания РТН - Предписание РТН
- * Предписания РТН - Предписание РТН
- * Акт поверки / ТО - ТУ
- * Свидетельство о регистрации ОПО - Предприятие
- * Заключение по обследованию тех. сотсояния ЗиС - ЗиС
+ * ПЛА                              - Объект
+ * Универсальный                    - Предприятие
+ * Сертификаты тех. устройств       - ТУ
+ * Разрешительный                   - Предприятие
+ * Заключение ЭПБ                   - ТУ
+ * Документация СУПБ                - Предприятие
+ * Полис страхования                - Объект
+ * Подтверающий док. о выполнении   - Предписание РТН
+ *              предисания РТН
+ * Предписания РТН                  - Предписание РТН
+ * Акт поверки / ТО                 - ТУ
+ * Свидетельство о регистрации ОПО  - Предприятие
+ * Заключение по обследованию       - ЗиС
+ *              тех. сотсояния ЗиС
  *
  */
 public class Document extends MOTestBase {
@@ -77,7 +79,7 @@ public class Document extends MOTestBase {
         goTo("Документы");
         selectRow(0);
         legend = "";
-        assertEquals(revisionValue("Код"), data, "Документ ПЛА не добавлен");
+        assertEquals(revisionValue("Код"), data, "Документ ПЛА не добавлен"  + getScreenshot("fail"));
     }
 
     @Test(priority = 20, groups = { "empty","add" })
@@ -99,7 +101,7 @@ public class Document extends MOTestBase {
         assertTrue(s.length == 0, "Есть обязательные поля, не подсвеченные как обязательные:\n" + Arrays.asList(s) + "\n" + (s.length == 0 ? "" : getScreenshot("fail")));
     }
 
-    @Test(priority=6, groups = { "add" })
+    @Test(priority=1, groups = { "add" })
     public void testAddDefault() throws Exception
     {
         operation="добавление";
@@ -118,7 +120,7 @@ public class Document extends MOTestBase {
         goTo("Документы");
         selectRow(0);
         legend = "";
-        assertEquals(revisionValue("Код"), data, "Универсальный документ не добавлен");
+        assertEquals(revisionValue("Код"), data, "Универсальный документ не добавлен"  + getScreenshot("fail"));
     }
 
     @Test(priority = 20, groups = { "empty","add" })
@@ -165,7 +167,7 @@ public class Document extends MOTestBase {
         goTo("Документы");
         selectRow(0);
         legend = "";
-        assertEquals(revisionValue("Код"), data, "Документ сертификат ТУ не добавлен");
+        assertEquals(revisionValue("Код"), data, "Документ сертификат ТУ не добавлен" + getScreenshot("fail"));
     }
 
     @Test(priority = 20, groups = { "empty","add" })
@@ -212,7 +214,7 @@ public class Document extends MOTestBase {
         goTo("Документы");
         selectRow(0);
         legend = "";
-        assertEquals(revisionValue("Код"), data, "Разрешительный документ не добавлен");
+        assertEquals(revisionValue("Код"), data, "Разрешительный документ не добавлен"  + getScreenshot("fail"));
     }
 
     @Test(priority = 20, groups = { "empty","add" })
@@ -261,7 +263,7 @@ public class Document extends MOTestBase {
         goTo("Документы");
         selectRow(0);
         legend = "";
-        assertEquals(revisionValue("Код"), data, "Заключение ЭПБ не добавлено");
+        assertEquals(revisionValue("Код"), data, "Заключение ЭПБ не добавлено"  + getScreenshot("fail"));
     }
 
     @Test(priority = 20, groups = { "empty","add" })
@@ -305,7 +307,7 @@ public class Document extends MOTestBase {
         goTo("Документы");
         selectRow(0);
         legend = "";
-        assertEquals(revisionValue("Код"), data, "Заключение ЭПБ не добавлено");
+        assertEquals(revisionValue("Код"), data, "Заключение ЭПБ не добавлено"  + getScreenshot("fail"));
     }
 
     @Test(priority = 20, groups = { "empty","add" })
@@ -348,7 +350,7 @@ public class Document extends MOTestBase {
         goTo("Документы");
         selectRow(0);
         legend = "";
-        assertEquals(revisionValue("Код"), data, "Полис обязательного страхования гражданской ответственности не добавлен");
+        assertEquals(revisionValue("Код"), data, "Полис обязательного страхования гражданской ответственности не добавлен"  + getScreenshot("fail"));
     }
 
     @Test(priority = 20, groups = { "empty","add" })
@@ -391,7 +393,7 @@ public class Document extends MOTestBase {
         goTo("Документы");
         selectRow(0);
         legend = "";
-        assertEquals(revisionValue("Код"), data, "Подтверждающий документ о выполнении предписания РТН не добавлен");
+        assertEquals(revisionValue("Код"), data, "Подтверждающий документ о выполнении предписания РТН не добавлен"  + getScreenshot("fail"));
     }
 
     @Test(priority = 20, groups = { "empty","add" })
@@ -433,7 +435,7 @@ public class Document extends MOTestBase {
         goTo("Документы");
         selectRow(0);
         legend = "";
-        assertEquals(revisionValue("Код"), data, "Документ предписание РТН не добавлено");
+        assertEquals(revisionValue("Код"), data, "Документ предписание РТН не добавлено"  + getScreenshot("fail"));
     }
 
     @Test(priority = 20, groups = { "empty","add" })
@@ -479,7 +481,7 @@ public class Document extends MOTestBase {
         goTo("Документы");
         selectRow(0);
         legend = "";
-        assertEquals(revisionValue("Код"), data, "Документ акт поверки/технического освидетельствования не добавлен");
+        assertEquals(revisionValue("Код"), data, "Документ акт поверки/технического освидетельствования не добавлен"  + getScreenshot("fail"));
     }
 
     @Test(priority = 20, groups = { "empty","add" })
@@ -522,7 +524,7 @@ public class Document extends MOTestBase {
         goTo("Документы");
         selectRow(0);
         legend = "";
-        assertEquals(revisionValue("Код"), data, "Документ свидетельство о регистрации ОПО не добавлен");
+        assertEquals(revisionValue("Код"), data, "Документ свидетельство о регистрации ОПО не добавлен"  + getScreenshot("fail"));
     }
 
     @Test(priority = 20, groups = { "empty","add" })
@@ -567,7 +569,7 @@ public class Document extends MOTestBase {
         goTo("Документы");
         selectRow(0);
         legend = "";
-        assertEquals(revisionValue("Код"), data, "Документ заключение по обследованию технического состояния ЗиС не добавлен");
+        assertEquals(revisionValue("Код"), data, "Документ заключение по обследованию технического состояния ЗиС не добавлен"  + getScreenshot("fail"));
     }
 
     @Test(priority = 20, groups = { "empty","add" })
@@ -590,7 +592,7 @@ public class Document extends MOTestBase {
         assertTrue(s.length == 0, "Есть обязательные поля, не подсвеченные как обязательные:\n" + Arrays.asList(s) + "\n" + (s.length == 0 ? "" : getScreenshot("fail")));
     }
 
-    @Test(priority = 210, groups = { "edit" })
+    @Test(priority = 2, groups = { "edit" })
     public void testEdit() throws Exception{
         operation="изменение";
         goTo("Общее", "Предприятие");
@@ -614,10 +616,10 @@ public class Document extends MOTestBase {
         goTo("Документы");
         selectRow(0);
         legend = "";
-        assertEquals(revisionValue("Код"), data, "Документ не изменен");
+        assertEquals(revisionValue("Код"), data, "Документ не изменен"  + getScreenshot("fail"));
     }
 
-    @Test(priority=310, groups = { "delete" })
+    @Test(priority=3, groups = { "delete" })
     public void testDelete() throws Exception
     {
         operation="удаление";

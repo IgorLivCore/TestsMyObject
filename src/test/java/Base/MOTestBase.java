@@ -29,7 +29,7 @@ public class MOTestBase extends TestBase{
         emptyFields = null;
         emptyFieldsLegend = null;
         expected_result=true;
-        flagSelect=1;
+        isSelectByValue =1;
         if (!count_fields.isEmpty())
             count_fields.clear();
         if (!first_test){
@@ -78,6 +78,7 @@ public class MOTestBase extends TestBase{
 
     public static void goTo(String nameLink) throws Exception
     {
+        waitForPageLoad();
         for (int i=0;i<10;i++) {
             try {
                 if (!MOWebdriver.isElementPresent(By.xpath("//div[@id=\"view-content\"]")))
@@ -97,12 +98,13 @@ public class MOTestBase extends TestBase{
 
     public static void goTo(String groupHeader, String nameLink) throws Exception
     {
-        //waitForPageLoad();
+        waitForPageLoad();
         for (int i=0;i<10;i++) {
             try {
                 //waitForElementPresent(By.xpath("//div[@id=\"left-menu\"]//li[@class=\"group-header\" and contains(text(),\"" + groupHeader + "\")]/following-sibling::node()//a[contains(descendant-or-self::node(),\"" + nameLink + "\")]"));
                 wait.until(visibilityOfElementLocated(By.xpath("//div[@id=\"left-menu\"]//li[@class=\"group-header\" and contains(text(),\"" + groupHeader + "\")]/following-sibling::node()//a[contains(descendant-or-self::node(),\"" + nameLink + "\")]")));
                 driver.findElement(By.xpath("//div[@id=\"left-menu\"]//li[@class=\"group-header\" and contains(text(),\"" + groupHeader + "\")]/following-sibling::node()//a[contains(descendant-or-self::node(),\"" + nameLink + "\")]")).click();
+                waitForPageLoad();
                 return;
             }
             catch (ElementNotVisibleException e)

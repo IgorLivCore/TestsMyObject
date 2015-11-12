@@ -1,6 +1,7 @@
 package myobject;
 
 import Base.MOTestBase;
+import Base.MOWebdriver;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -128,7 +129,9 @@ public class ActionTransferDeadline extends MOTestBase {
         goTo("Документы");
         selectRow(0);
         goTo("Мероприятия");
-        selectRow(0);
-        assertNotEquals(revisionValue("Причина переноса"), data, "Перенос срока мероприятия не удален");
+        if (!MOWebdriver.isListEmpty()){
+            selectRow(0);
+            assertNotEquals(revisionValue("Причина переноса"), data, "Перенос срока мероприятия не удален");
+        }
     }
 }

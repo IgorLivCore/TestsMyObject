@@ -12,7 +12,6 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -34,7 +33,7 @@ public abstract class MOWebdriver {
     public static String data;
     public static String data1;
     public static String data2;
-    protected static int flagSelect;
+    protected static int isSelectByValue;
     public static String operation;
     public static boolean expected_result=true;//true - позитивный тест-кейс, false - негативный тест-кейс
     public static ArrayList<String> emptyFields = null;
@@ -415,7 +414,7 @@ public abstract class MOWebdriver {
         try { //проверяем, является ли строка числом - чтобы опеределить по индексу или по значению
             Integer.parseInt(value);
         } catch (Exception e) {
-            flagSelect=1;
+            isSelectByValue =1;
         }
 
         if (value==null||value.equals(""))
@@ -434,15 +433,16 @@ public abstract class MOWebdriver {
                         el.findElement(By.xpath(".//button[contains(@class,\"show-list\")]")).click();//стрелочка
                         //TimeUnit.SECONDS.sleep(5);
                         //нажатие на выбранный пункт сделано через actions, т.к. обычный click() попадает мимо и в некоторых случаях нажимает на кнопки
-                        Actions builder = new Actions(driver);
+                        //Actions builder = new Actions(driver);
+                        wait.until(visibilityOf(el.findElement(By.xpath(".//div[@class=\"my-combobox-item\"]"))));
                         //по индексу
-                        if (flagSelect == 0)
-                            builder.moveToElement(el.findElement(By.xpath(".//div[@class=\"my-combobox-item\"][" + Integer.toString(Integer.parseInt(value) + 1) + "]")), 5, 5).click().build().perform();
-                            //el.findElement(By.xpath(".//div[@class=\"my-combobox-item\"][" + Integer.toString(Integer.parseInt(value) + 1) + "]")).click();//по номеру
+                        if (isSelectByValue == 0)
+                            //builder.moveToElement(el.findElement(By.xpath(".//div[@class=\"my-combobox-item\"][" + Integer.toString(Integer.parseInt(value) + 1) + "]")), 5, 5).click().build().perform();
+                            el.findElement(By.xpath(".//div[@class=\"my-combobox-item\"][" + Integer.toString(Integer.parseInt(value) + 1) + "]")).click();//по номеру
                         //по значению
                         else
-                            builder.moveToElement(el.findElement(By.xpath(".//div[@class=\"my-combobox-item\" and contains(text(),\"" + value + "\")]")), 5, 5).click().build().perform();
-                           // el.findElement(By.xpath(".//div[@class=\"my-combobox-item\" and contains(text(),\"" + value + "\")]")).click();//по названию
+                            //builder.moveToElement(el.findElement(By.xpath(".//div[@class=\"my-combobox-item\" and contains(text(),\"" + value + "\")]")), 5, 5).click().build().perform();
+                            el.findElement(By.xpath(".//div[@class=\"my-combobox-item\" and contains(text(),\"" + value + "\")]")).click();//по названию
                         return;
                     }
                 }
@@ -457,7 +457,7 @@ public abstract class MOWebdriver {
             if (isElementPresent(By.xpath(parent + "/following-sibling::node()//label[contains(text(),\"" + nameField + "\")]/..//select")))
             {
                 //по индексу
-                if (flagSelect==0)
+                if (isSelectByValue ==0)
                     new Select(driver.findElement(By.xpath(parent + "/following-sibling::node()//label[contains(text(),\"" + nameField + "\")]/..//select"))).selectByIndex(Integer.parseInt(value));
                     //по значению
                 else
@@ -479,7 +479,7 @@ public abstract class MOWebdriver {
                                 active_view="right-view";
                                 //по индексу
                                 wait.until(visibilityOfElementLocated(By.xpath("//div[@id=\"" + active_view + "\"]//button[contains(@class,\"refresh\")]/span")));
-                                if (flagSelect==0)
+                                if (isSelectByValue ==0)
                                     selectRow(Integer.parseInt(value));
                                     //по значению
                                 else {
@@ -515,7 +515,7 @@ public abstract class MOWebdriver {
 
     public static void select(String nameField, int value)
     {
-        flagSelect=0;
+        isSelectByValue =0;
         select(nameField, Integer.toString(value));
     }
 
@@ -599,7 +599,6 @@ public abstract class MOWebdriver {
 
     public static void include(int index){
         waitForPageLoad();
-        boolean included=false;
         if(isElementPresent(By.xpath("//div[@id=\"" + active_view + "\"]//button[@title=\"Сортировка\"]")))
         {
             driver.findElement(By.xpath("//div[@id=\"" + active_view + "\"]//button[@title=\"Сортировка\"]")).click();
@@ -607,7 +606,7 @@ public abstract class MOWebdriver {
             new Select(driver.findElement(By.xpath("//label[text()=\"Сортировка\"]/parent::*/select"))).selectByVisibleText("▾ - по убыванию");
             driver.findElement(By.xpath("//div[@id=\"" + active_view + "\"]//button[@title=\"Сортировка\"]")).click();//убираем сортировку
         }
-        for(int i=0;i<30 && !included;i++)
+        for(int i=0;i<30;i++)
         {
             try{
                 new Actions(driver).moveToElement(driver.findElement(By.xpath("//div[@id=\"" + active_view + "\"]//div[@id=\"grid-rows\" or @class=\"grid-rows\"]/div"))).
@@ -616,15 +615,12 @@ public abstract class MOWebdriver {
                 //new Actions(driver)..perform();
                 //driver.findElement(By.xpath("//button[contains(@title,\"Включить\")][" + (index + 1) + "]")).sendKeys("\n");
                 //driver.
-                included=true;
                 return;
             }
             catch (StaleElementReferenceException e)
-            {
-                included=false;
-            }
+            {            }
         }
-        if (!included) fail("Не удалось включить!");
+        fail("Не удалось включить!");
     }
 
     public static void exclude(int index){
@@ -671,7 +667,7 @@ public abstract class MOWebdriver {
         driver.findElement(By.id("master-button")).click();
     }
 
-    public static void edit()
+    public static void edit() throws Exception
     {
         waitForPageLoad();
         if (isElementPresent(By.xpath("//button[contains(text(),\"Редактировать\")]")))
@@ -689,6 +685,7 @@ public abstract class MOWebdriver {
                     else
                         fail("Не удалось найти кнопку редактирования!\n" + getScreenshot("fail"));
         }
+        TimeUnit.SECONDS.sleep(2);
     }
 
     public static void delete() throws Exception {
@@ -696,11 +693,11 @@ public abstract class MOWebdriver {
         if (isElementPresent(By.id("remove")))
             driver.findElement(By.id("remove")).click();//кликаем удалить
         else if (isElementPresent(By.xpath("//button[contains(@class,\"remove\")]"))) {
-            sortList("Порядковый №","▾ - по убыванию");
-            driver.findElement(By.xpath("//button[contains(@class,\"remove\")]")).click();//кликаем удалить
-        }
-        else
-            driver.findElement(By.xpath("//*[contains(text()[last()],\"Удалить\")]")).click();//кликаем удалить
+                sortList("Порядковый №","▾ - по убыванию");
+                driver.findElement(By.xpath("//button[contains(@class,\"remove\")]")).click();//кликаем удалить
+            }
+            else
+                driver.findElement(By.xpath("//*[contains(text()[last()],\"Удалить\")]")).click();//кликаем удалить
         TimeUnit.SECONDS.sleep(2);
         (new WebDriverWait(driver, 20)).until(ExpectedConditions.alertIsPresent()).accept();//подтвердить удаление
         wait.until(invisibilityOfElementLocated(By.xpath("//*[@class='overlay']")));
@@ -717,18 +714,21 @@ public abstract class MOWebdriver {
         waitForPageLoad();
         setParent();
         waitForElementPresent(By.xpath("//div[@id=\"" + active_view + "\"]//div[@id=\"grid-rows\" or @class=\"grid-rows\"]/div"));
-        if (isElementPresent(By.xpath("")))
+        wait.until(elementToBeClickable(By.xpath("//div[@id=\"" + active_view + "\"]//div[@id=\"grid-rows\" or @class=\"grid-rows\"]/div")));
         sortList("Порядковый №","▴ - по возрастанию");
         sortList("Порядковый №","▾ - по убыванию");
         for(int i=0;i<10;i++)
             try{
-                //waitForPageLoad();
+                waitForPageLoad();
                 if(isElementPresent(By.xpath("//div[@id=\"" + active_view + "\"]//div[@id=\"grid-rows\" or @class=\"grid-rows\"]//span[contains(@class,\"expand-button\")]")))
                     //если древовидная структура списка
                     driver.findElement(By.xpath("//div[@id=\"" + active_view + "\"]//div[@id=\"grid-rows\" or @class=\"grid-rows\"]/div[" + (index+1) + "][@class]/div")).click();
                 else
                     //driver.findElement(By.xpath("//div[@id=\"" + active_view + "\"]//div[@id=\"grid-rows\" or @class=\"grid-rows\"]/div[" + (index+1) + "][@class]")).click();
-                {//делаем через Actions чтобы случаем не кликнуть по какой-нибудь ссылке
+                {//делаем через Actions клик не в середину, чтобы случаем не кликнуть по какой-нибудь ссылке
+                    //wait.until(visibilityOfElementLocated(By.xpath("//div[@id=\"" + active_view + "\"]//div[@id=\"grid-rows\" or @class=\"grid-rows\"]/div[" + (index+1) + "]")));
+                    //wait.until(elementToBeClickable(By.xpath("//div[@id=\"" + active_view + "\"]//div[@id=\"grid-rows\" or @class=\"grid-rows\"]/div[" + (index+1) + "]")));
+                    TimeUnit.SECONDS.sleep(1);//magic - с ожиданиями валится при редактировании нар.протокола
                     Actions builder = new Actions(driver);
                     builder.moveToElement(driver.findElement(By.xpath("//div[@id=\"" + active_view + "\"]//div[@id=\"grid-rows\" or @class=\"grid-rows\"]/div[" + (index+1) + "]")), 1, 1).click().build().perform();
                 }
@@ -744,12 +744,19 @@ public abstract class MOWebdriver {
     }
 
     public static void sortList(String column, String sortKind){
-        if(isElementPresent(By.xpath("//div[@id=\"" + active_view + "\"]//button[@title=\"Сортировка\"]")))
-        {
-            driver.findElement(By.xpath("//div[@id=\"" + active_view + "\"]//button[@title=\"Сортировка\"]")).click();
-            new Select(driver.findElement(By.xpath("//label[text()=\"Поле\"]/parent::*/select"))).selectByVisibleText(column);
-            new Select(driver.findElement(By.xpath("//label[text()=\"Сортировка\"]/parent::*/select"))).selectByVisibleText(sortKind);
-            driver.findElement(By.xpath("//div[@id=\"" + active_view + "\"]//button[@title=\"Сортировка\"]")).click();
+        for (int i = 0;i<10;i++){
+            try{
+                if(isElementPresent(By.xpath("//div[@id=\"" + active_view + "\"]//button[@title=\"Сортировка\"]")))
+                {
+                    driver.findElement(By.xpath("//div[@id=\"" + active_view + "\"]//button[@title=\"Сортировка\"]")).click();
+                    new Select(driver.findElement(By.xpath("//label[text()=\"Поле\"]/parent::*/select"))).selectByVisibleText(column);
+                    new Select(driver.findElement(By.xpath("//label[text()=\"Сортировка\"]/parent::*/select"))).selectByVisibleText(sortKind);
+                    driver.findElement(By.xpath("//div[@id=\"" + active_view + "\"]//button[@title=\"Сортировка\"]")).click();
+                }
+                return;
+            }
+            catch (StaleElementReferenceException e)
+            {}
         }
     }
 
@@ -769,14 +776,11 @@ public abstract class MOWebdriver {
     public static String revisionValue(String nameField){
         try{
             setParent();
-            //wait.until(visibilityOfElementLocated(By.xpath(parent + "/following-sibling::node()//descendant-or-self::node()[contains(text(),\"" + nameField + "\")]/../following-sibling::div/..[text()]")));
             for (int i = 0;i<10;i++)
                 try{
                     return driver.findElement(By.xpath(parent + "/following-sibling::node()//descendant-or-self::node()[contains(text(),\"" + nameField + "\")]/../following-sibling::div")).getText();
                 }
-                catch (StaleElementReferenceException e)
-                {                }
-                catch (NoSuchElementException e)
+                catch (StaleElementReferenceException | NoSuchElementException e)
                 {                }
         }
         catch (Exception e)
@@ -959,7 +963,7 @@ public abstract class MOWebdriver {
                                 wait.until(elementToBeClickable(el.findElement(By.xpath(".//button[contains(@class,\"show-list\")]"))));
                                 el.findElement(By.xpath(".//button[contains(@class,\"show-list\")]")).click();//стрелочка
                                 //по индексу
-                                if (flagSelect == 0)
+                                if (isSelectByValue == 0)
                                     el.findElement(By.xpath(".//div[@class=\"my-combobox-item\"][" + Integer.toString(Integer.parseInt(value) + 1) + "]")).click();//по номеру
                                     //по значению
                                 else
@@ -978,7 +982,7 @@ public abstract class MOWebdriver {
                     if (isElementPresent(By.xpath(parent + "/following-sibling::node()//label[contains(text(),\"" + nameField + "\")]/..//select")))
                     {
                         //по индексу
-                        if (flagSelect==0)
+                        if (isSelectByValue==0)
                             new Select(driver.findElement(By.xpath(parent + "/following-sibling::node()//label[contains(text(),\"" + nameField + "\")]/..//select"))).selectByIndex(Integer.parseInt(value));
                             //по значению
                         else
@@ -1000,7 +1004,7 @@ public abstract class MOWebdriver {
                                         active_view="right-view";
                                         //по индексу
                                         wait.until(visibilityOfElementLocated(By.xpath("//div[@id=\"" + active_view + "\"]//button[contains(@class,\"refresh\")]/span")));
-                                        if (flagSelect==0)
+                                        if (isSelectByValue==0)
                                             selectRow(Integer.parseInt(value));
                                             //по значению
                                         else {

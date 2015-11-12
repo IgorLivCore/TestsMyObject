@@ -4,7 +4,7 @@
 <suite name="Custom">
     <parameter name="timeout" value="30"/>
 
-    <!--<test name="Предприятие">
+    <test name="Предприятие">
         <classes>
             <class name="myobject.Company"/>
         </classes>
@@ -13,7 +13,7 @@
         <classes>
             <class name="myobject.Filial"/>
         </classes>
-    </test>-->
+    </test>
     <test name="СП">
         <classes>
             <class name="myobject.Team"/>
@@ -175,19 +175,7 @@
         </classes>
     </test>
 
-
     <!--
-
-
-    <test name="Инцидент">
-        <classes>
-            <class name="myobject.Incident"/>
-        </classes>
-    </test>-
-
-
-
-
     <test name="TestIE">
          <parameter name="brwsr-path" value="*firefox"/>
          <classes>

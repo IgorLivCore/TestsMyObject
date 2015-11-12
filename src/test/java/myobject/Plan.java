@@ -114,7 +114,7 @@ public class Plan extends MOTestBase {
         if (!MOWebdriver.isListEmpty()) {
             selectRow(0);
             edit();
-            assertNotEquals(getValue("Название плана"), data, "План не удален");
+            assertNotEquals(getValue("Название плана"), data, "План не удален" + getScreenshot("fail"));
         }
     }
 }
