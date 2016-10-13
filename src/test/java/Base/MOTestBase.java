@@ -49,13 +49,29 @@ public class MOTestBase extends TestBase{
 
         driver.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS);
         driver.manage().window().maximize();
-        driver.get("http://myobject");
+        driver.get("http://localhost");
         wait = new WebDriverWait(driver, 200);
-        goTo("Войти");
-        waitForElementPresent(By.xpath("//*[@id=\"authWindow\"]"));
-        input("Email","test@test.test");
-        input("Пароль", "test");
+        goTo("Вход в myObject");
+        //waitForElementPresent(By.xpath("//*/div[@class=\"modal fade authWindow in\"]"));//  //*[@id=\"authWindow\"]
+
+        waitForElementPresent(By.xpath("//div [@class=\"modal fade authWindow in\"]"));
+
+
+        driver.findElement(By.xpath("//input[@name=\"email\"]")).sendKeys("ww@ww.ww");
+        driver.findElement(By.xpath("//input[@name=\"passwd\"]")).sendKeys("wwww");
+
+        /*try {
+            //input("Email","ww@ww.ww");
+            //input("Пароль", "wwww");
+            System.out.println("n1");
+        }
+        catch(Exception e){
+            System.out.println("f1");
+        }*/ //нужно доработать, выше просто заглушка
+
+
         button("Войти");
+
 
         waitForElementPresent(By.xpath("//div[@id=\"left-menu\"]"));
 

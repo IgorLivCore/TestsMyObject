@@ -26,7 +26,7 @@ public abstract class TestBase {
     @BeforeTest(alwaysRun = true) public abstract void setUpTest() throws Exception;
 
     protected void registerWebdriver(){
-        DesiredCapabilities browser = DesiredCapabilities.chrome();
+        DesiredCapabilities browser = DesiredCapabilities.firefox();
         browser.setCapability("browser.cache.disk.enable", false);
         browser.setCapability("browser.cache.memory.enable", false);
         browser.setCapability("browser.cache.offline.enable", false);

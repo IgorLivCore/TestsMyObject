@@ -1,4 +1,5 @@
 package Base;
+import org.apache.xerces.util.SynchronizedSymbolTable;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.Augmenter;
@@ -310,14 +311,17 @@ public abstract class MOWebdriver {
             TimeUnit.SECONDS.sleep(2);
             waitForPageLoad();
         }
-        else
+        else//остан
         {
             setData(nameField, value);
             if (!isElementPresent(By.xpath(parent + "/following-sibling::node()//label[contains(text(),\"" + nameField + "\")]")))
                 field="";
             else
                 field="/following-sibling::node()//label[contains(text(),\"" + nameField + "\")]";
-            if (nameField.contains("Местонахождение")||nameField.contains("Адрес")||
+
+            /////////System.out.println(field);
+
+            if (nameField.contains("Email")||nameField.contains("Пароль")||nameField.contains("Местонахождение")||nameField.contains("Адрес")||
                     nameField.contains("Телефон")||nameField.contains("Номер телефона")||
                     nameField.contains("Факс")||nameField.contains("Номер факса"))
             {
@@ -653,7 +657,7 @@ public abstract class MOWebdriver {
     }
 
     public static void save() {
-        waitForPageLoad();
+        waitForPageLoad();//
         if(isElementPresent(By.xpath("//button[contains(text(),\"Сохранить\")]")))
             driver.findElement(By.xpath("//button[contains(text(),\"Сохранить\")]")).click();
         else
