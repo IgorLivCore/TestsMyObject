@@ -45,8 +45,8 @@ public class AdminTestBase extends TestBase {
         driver.get("http://admin.myobject");
         wait = new WebDriverWait(driver, 200);
         waitForElementPresent(By.xpath("//*[@class=\"login-form\"]"));
-        input("Логин","admin@myobject.ru");
-        input("Пароль", "test");
+        input("Логин","qq@qq.qq");
+        input("Пароль", "qqqq");
         button("Войти");
 
         waitForElementPresent(By.xpath("//div[@id=\"top-menu\"]"));
