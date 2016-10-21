@@ -26,7 +26,7 @@ public class AdminTestBase extends TestBase {
         if (!count_fields.isEmpty())
             count_fields.clear();
         if (!first_test){
-            goTo("Компании");
+            goTo("Компании");//
             refresh();
         }
     }
