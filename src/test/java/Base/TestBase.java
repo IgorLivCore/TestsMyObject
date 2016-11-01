@@ -1,5 +1,6 @@
 package Base;
 
+import Listeners.ListenerThatHiglilightsElements;
 import Listeners.ListenerThatWaitsBeforeAnyAction;
 import org.openqa.selenium.By;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -34,8 +35,8 @@ public abstract class TestBase {
 
         regularDriver = WebDriverFactory.getDriver(browser);
         driver = new EventFiringWebDriver(regularDriver);
-        driver.register(new ListenerThatWaitsBeforeAnyAction(driver,500, TimeUnit.MILLISECONDS));//для замедления
-        //driver.register(new ListenerThatHiglilightsElements(1,500, TimeUnit.MILLISECONDS));//для замедления и подсветки
+        //driver.register(new ListenerThatWaitsBeforeAnyAction(driver,500, TimeUnit.MILLISECONDS));//для замедления
+        driver.register(new ListenerThatHiglilightsElements(1,100, TimeUnit.MILLISECONDS));//для замедления и подсветки
     }
 
     @BeforeTest
