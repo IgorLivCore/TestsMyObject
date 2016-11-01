@@ -1,13 +1,18 @@
 package ozon;
 
-import Listeners.ListenerThatHiglilightsElements;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+import Listeners.ListenerThatHiglilightsElements;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver.*;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 import ru.stqa.selenium.factory.WebDriverFactory;
+
 
 import java.util.concurrent.TimeUnit;
 
@@ -17,6 +22,7 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElem
 
 import java.lang.String;
 import java.lang.*;
+
 
 /**
  * Created by igor on 01.11.16.
@@ -61,6 +67,7 @@ public class oz {
 //div[1][@class="bOneTile inline jsUpdateLink mRuble"]/a[@class="jsUpdateLink eOneTile_link"]
 //div[1][@class="bOneTile inline jsUpdateLink mRuble"]/a[@class="eOneTile_tileLink jsUpdateLink"]
         //div[@class="bOneTile inline jsUpdateLink mRuble"]/a[@class="eOneTile_tileLink jsUpdateLink"][1]
+
         /***************5**********************/
         waitForPageLoad();
         driver.findElement(By.xpath("//div[1][@class=\"bOneTile inline jsUpdateLink mRuble \"]/a[@class=\"eOneTile_tileLink jsUpdateLink\"]")).click();
@@ -75,44 +82,43 @@ public class oz {
 
         /***************7**********************/
         waitForPageLoad();
-        driver.findElement(By.xpath("v korzinu")).click();
+        driver.findElement(By.xpath("//div[text()=\"Добавить в корзину\"]")).click();
 
-        /***************8+8**********************/
+        /***************8**********************/
         waitForPageLoad();
-        driver.findElement(By.xpath("otkryt korzinu")).click();
+        driver.findElement(By.xpath("//a[text()=\"Корзина\"]")).click();
         /**************************************/
         try{
-            String price2 = driver.findElement(By.xpath("path")).getText();
-            String name2 = driver.findElement(By.xpath("path")).getText();
+            String name2 = driver.findElement(By.xpath("//a[@id=\"phCenter_ctl01_ctl00_ctl01_CartRepeater_ctl02_0_ItemNameHyperLink_0\"]")).getText();
+            String price2 = driver.findElement(By.xpath("//div[@class=\"eCartBlock_eItemTotalCost\"]")).getText();
 
             if( name == name2 && price == price2 ) System.out.println("good"); else System.out.println("bad");
         }
         catch (Exception e){System.out.println("very bad");}
 
-
         /***************9**********************/
-        waitForPageLoad();
-        driver.findElement(By.xpath("udalit iz korzini")).click();
+        waitForPageLoad();//hover
+        driver.findElement(By.xpath("//label[@class=\"eCheckbox_eLabel jsItemCheckboxLabel\"]")).click();//при добавлении товаров>1 в корзину будет ошибка
+
+        waitForPageLoad();//delete
+        driver.findElement(By.xpath("//input[@id=\"phCenter_ctl01_ctl00_ctl01_CartRepeater_DeleteLinkButtonMulti\"]")).click();
 
         /***************10**********************/
-        /*тут нужно обновить страницу*/ //waitForPageLoad();
+        /*тут нужно обновить страницу*/
+        //refresh();
+        //driver.SwitchTo().Alert().Accept();
+        //driver.findElement(By.xpath("//input[@id=\"phCenter_ctl01_ctl00_ctl01_CartRepeater_DeleteLinkButtonMulti\"]")).click();
+
+        driver.get("https://www.ozon.ru/context/cart/");
         waitForPageLoad();
-        driver.findElement(By.xpath("udalit iz korzini")).click();
 
         try{/*если нет того элемента*/
-
-            driver.findElement(By.xpath("element est`"));
+            driver.findElement(By.xpath("//div[@class=\"eEmptyCartMessage_eTitle\"]"));//тут что то не то
+            System.out.println("elementa net!");
         }
-        catch (Exception e){ System.out.println("elementa net"); }
-
+        catch (Exception e){ System.out.println("element est!"); }
 
         /***************11**********************/
-
-
-
-
-
-
-
+        driver.quit();
     }
 }
