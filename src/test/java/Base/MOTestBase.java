@@ -48,7 +48,7 @@ public class MOTestBase extends TestBase{
         registerWebdriver();
 
         driver.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS);
-        driver.manage().window().maximize();
+        //driver.manage().window().maximize();
         driver.get("http://localhost");
         wait = new WebDriverWait(driver, 200);
         goTo("Вход в myObject");
