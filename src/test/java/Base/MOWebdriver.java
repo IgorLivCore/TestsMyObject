@@ -55,7 +55,7 @@ public abstract class MOWebdriver {
     Устанавливаем родителя для поиска элементов по элементу legend
      */
     protected static boolean setParent(){
-        if (isElementPresent(By.id("myModal"))||isElementPresent(By.className("modal-content")))
+        if (isElementPresent(By.id("myModal"))||isElementPresent(By.className("modal-content")))//modal?
             active_view = "modal-content";
         else
             if (isElementPresent(By.id("right-view"))||isElementPresent(By.className("right-view")))
@@ -160,6 +160,7 @@ public abstract class MOWebdriver {
 
     protected static boolean isElementPresent(By by) {
         boolean result=true;
+
         driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
         try{
             if (driver.findElement(by)==null||!driver.findElement(by).isDisplayed())
@@ -239,7 +240,7 @@ public abstract class MOWebdriver {
     {
         String filePath;
         try{
-            ImageIO.write(getScreenshot(driver.findElement(By.id("view-content"))), "png", new File(filePath = "/home/natalia/IdeaProjects/TestsMyObject/src/test/screenshots/" + result + "s/" + result + "_" + (new SimpleDateFormat("yyyy.MM.dd_HH:mm:ss").format(System.currentTimeMillis())) + ".png"));
+            ImageIO.write(getScreenshot(driver.findElement(By.id("view-content"))), "png", new File(filePath = "/home/igor/testswork/testsmyobject/src/test/screenshots/" + result + "s/" + result + "_" + (new SimpleDateFormat("yyyy.MM.dd_HH:mm:ss").format(System.currentTimeMillis())) + ".png"));
 
             return "Скриншот:" + filePath;
         }
@@ -321,12 +322,12 @@ public abstract class MOWebdriver {
 
             /////////System.out.println(field);
 
-            if (nameField.contains("Email")||nameField.contains("Пароль")||nameField.contains("Местонахождение")||nameField.contains("Адрес")||
+            if (/*nameField.contains("Email")||nameField.contains("Пароль")||*/nameField.contains("Имя")||nameField.contains("Местонахождение")||nameField.contains("Адрес")||
                     nameField.contains("Телефон")||nameField.contains("Номер телефона")||
                     nameField.contains("Факс")||nameField.contains("Номер факса"))
             {
                 String[] arr=new String[3];
-                if(value.split("\\-").length>0)
+                if(value.split("\\-").length>0)//расщепление на строки 1//-2
                     arr=value.split("\\-");
                 for (int i=0;i<arr.length;i++)
                 {
@@ -704,6 +705,12 @@ public abstract class MOWebdriver {
                 driver.findElement(By.xpath("//*[contains(text()[last()],\"Удалить\")]")).click();//кликаем удалить
         TimeUnit.SECONDS.sleep(2);
         (new WebDriverWait(driver, 20)).until(ExpectedConditions.alertIsPresent()).accept();//подтвердить удаление
+        if (isElementPresent(By.xpath("//*[@class = \"alert alert-warning\"]"))) {
+            /*если есть связка с другими сущностями*/
+            System.out.println("Невозможно удалить сотрудника\n" + "Для удаления данной сущности, сначала необходимо убрать связь с ней из данных, представленных ниже");
+            legend = "привязан";//м.б. не легенд тут надо
+        }/*пока оставим else т.к. нет кода для выделения и отвязки сущностей*/
+        else
         wait.until(invisibilityOfElementLocated(By.xpath("//*[@class='overlay']")));
         //TimeUnit.SECONDS.sleep(2);//ждем секунду
     }
@@ -905,8 +912,8 @@ public abstract class MOWebdriver {
             }
         count_fields.put(parent + nameField, count_fields.containsKey(parent + nameField) ? count_fields.get(parent + nameField) + 1 : 1);
     }
-/*
-    public static void setData(String nameField, String inputType, String value) {
+
+    /*public static void setData(String nameField, String inputType, String value) {
         waitForPageLoad();
         setParent();
 
@@ -930,9 +937,9 @@ public abstract class MOWebdriver {
             }
         count_fields.put(parent + nameField, count_fields.containsKey(parent + nameField) ? count_fields.get(parent + nameField)+1:1);
 
-        //switch (inputType){
+        switch (inputType){
 
-            /*case "button":
+            case "button":
                 if (isElementPresent(By.id("add-docs-to-responsible"))&&legend.equals("Нормативные документы, требования которых были нарушены"))
                     driver.findElement(By.id("add-docs-to-responsible")).click();
                 else {
@@ -946,12 +953,12 @@ public abstract class MOWebdriver {
                             continue;
                         }
                 }
-                break;*/
-            /*case "label":
+                break;
+            case "label":
                 driver.findElement(By.xpath(parent)).click();
                 driver.findElement(By.xpath(parent + "/following-sibling::node()//label/input[contains(following-sibling::text(),\"" + nameField + "\")]/..")).click();
-                break;*/
-            /*case "select":
+                break;
+            case "select":
                 if (value==null||value.equals(""))
                     break;
                 //кнопочная версия
@@ -1042,8 +1049,8 @@ public abstract class MOWebdriver {
                                 fail("Не найден элемент select (поле выбора из спиcка \"" + nameField + "\")");
                         }
 
-                break;*/
-            /*case "unselect":
+                break;
+            case "unselect":
                 if (isElementPresent(By.xpath(parent + "/following-sibling::node()//label[contains(text(),\"" + nameField + "\")]/..//button[contains(@title,\"Обнулить значение\")]")))
                     driver.findElement(By.xpath(parent + "/following-sibling::node()//label[contains(text(),\"" + nameField + "\")]/..//button[contains(@title,\"Обнулить значение\")]")).click();
                 else {
@@ -1057,15 +1064,15 @@ public abstract class MOWebdriver {
                 if (emptyFields==null)
                     emptyFields=new ArrayList<>();
                 emptyFields.add(nameField);
-                break;*/
-            /*case "date":
+                break;
+            case "date":
                 setDate(driver.findElement(By.xpath(parent + "/..//*[contains(text(),\"" + nameField + "\")]/..//input")), value);
-                break;*/
-            /*case "check":
+                break;
+            case "check":
                 if(!getValue(nameField).equals(value))
                     driver.findElement(By.xpath(parent + "/..//*[contains(normalize-space(label),\"" + nameField + "\") or contains(normalize-space(span),\"" + nameField + "\")]//input")).click();
-                break;*/
-            /*case "switch":
+                break;
+            case "switch":
                 String factValue="";
                 String val1=driver.findElement(By.xpath(parent + "/..//*[contains(*,\"" + nameField + "\")]//input/following-sibling::*[contains(@class,\"switcher\")]/*[contains(text(),\"\")][1]")).getText();
                 String val2=driver.findElement(By.xpath(parent + "/..//*[contains(*,\"" + nameField + "\")]//input/following-sibling::*[contains(@class,\"switcher\")]/*[contains(text(),\"\")][2]")).getText();
@@ -1079,8 +1086,8 @@ public abstract class MOWebdriver {
                 else fail();
                 if(!factValue.equals(val))
                     driver.findElement(By.xpath(parent + "/..//*[contains(*,\"" + nameField + "\")]//input/following-sibling::*[contains(@class,\"switcher\")]")).click();
-                break;*/
-            /*case "tree":
+                break;
+            case "tree":
                 if (value.equals(""))
                 {
                     driver.findElement(By.xpath(parent + "/following-sibling::node()//label[contains(text(),\"" + nameField + "\")]/following-sibling::node()/descendant-or-self::ul[1]/li[1]/div/span")).click();
@@ -1090,7 +1097,7 @@ public abstract class MOWebdriver {
                 }
                 else
                     driver.findElement(By.xpath(parent + "/following-sibling::node()//label[contains(text(),\"" + nameField + "\")]/following-sibling::node()/descendant-or-self::ul[1]//*[contains(text(),\"" + value + "\")]")).click();
-                break;*/
-        //}
-    //}
+                break;
+        }
+    }*/
 }

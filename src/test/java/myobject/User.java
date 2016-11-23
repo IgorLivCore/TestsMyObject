@@ -143,6 +143,26 @@ public class User extends MOTestBase {
         assertTrue(s.length == 0, "Есть обязательные поля, не подсвеченные как обязательные:\n" + Arrays.asList(s) + "\n" + (s.length == 0 ? "" : getScreenshot("fail")));
     }
 
+    @Test(priority=330, groups = { "activate" })
+    public void testActivate() throws Exception
+    {
+        operation="деактивация";
+        filterList("Статус учетной записи", "select", "Деактивированная");
+        selectRow(0);
+        data = revisionValue("E-mail (логин)").trim();
+        button("Восстановить");
+        (new WebDriverWait(driver, 20)).until(ExpectedConditions.alertIsPresent()).accept();//подтвердить деактивацию
+
+        messageResultOfOperation("Пользователь");
+
+        goTo("Прочее","Администрирование");
+        goTo("Прочее","Учетные записи");
+        filterList("Статус учетной записи", "select", "Деактивированная");
+        if (!MOWebdriver.isListEmpty()) {
+            selectRow(0);
+            assertNotEquals(revisionValue("E-mail (логин)").trim(), data, "Пользователь не активирован!\n" + getScreenshot("fail"));
+        }
+    }
     @Test(priority=330, groups = { "deactivate" })
     public void testDeactivate() throws Exception
     {
@@ -164,24 +184,4 @@ public class User extends MOTestBase {
         }
     }
 
-    @Test(priority=330, groups = { "activate" })
-    public void testActivate() throws Exception
-    {
-        operation="деактивация";
-        filterList("Статус учетной записи", "select", "Деактивированная");
-        selectRow(0);
-        data = revisionValue("E-mail (логин)").trim();
-        button("Восстановить");
-        (new WebDriverWait(driver, 20)).until(ExpectedConditions.alertIsPresent()).accept();//подтвердить деактивацию
-
-        messageResultOfOperation("Пользователь");
-
-        goTo("Прочее","Администрирование");
-        goTo("Прочее","Учетные записи");
-        filterList("Статус учетной записи", "select", "Деактивированная");
-        if (!MOWebdriver.isListEmpty()) {
-            selectRow(0);
-            assertNotEquals(revisionValue("E-mail (логин)").trim(), data, "Пользователь не активирован!\n" + getScreenshot("fail"));
-        }
-    }
 }

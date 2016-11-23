@@ -19,7 +19,7 @@
             <class name="myobject.Team"/>
         </classes>
     </test>
-    <test name="Должность">
+    <test name="Должность"><!--+-->
         <classes>
             <class name="myobject.Position"/>
         </classes>
@@ -29,7 +29,7 @@
             <class name="myobject.Employee"/>
         </classes>
     </test>
-    <test name="Аттестация">
+    <test name="Аттестация"><!--+-->
         <classes>
             <class name="myobject.Certification"/>
         </classes>
@@ -44,22 +44,22 @@
             <class name="myobject.EmployeeCount"/>
         </classes>
     </test>
-    <test name="Объект">
+    <test name="Объект"><!--+-->
         <classes>
             <class name="myobject.Object"/>
         </classes>
     </test>
-    <test name="ПЛА">
+    <test name="ПЛА"><!--+-->
         <classes>
             <class name="myobject.PLA"/>
         </classes>
     </test>
-    <test name="Подготовка персонала">
+    <test name="Подготовка персонала"><!--+-->
         <classes>
             <class name="myobject.ObjectCrashTraining"/>
         </classes>
     </test>
-    <test name="Подобъект">
+    <test name="Подобъект"><!--+-->
         <classes>
             <class name="myobject.Element"/>
         </classes>
@@ -69,17 +69,17 @@
             <class name="myobject.Objects500m"/>
         </classes>
     </test>
-    <test name="ТУ">
+    <test name="ТУ"><!--+/-->
         <classes>
             <class name="myobject.TechnicalDevice"/>
         </classes>
     </test>
-    <test name="Модернизация ТУ">
+    <test name="Модернизация ТУ"><!--+-->
         <classes>
             <class name="myobject.TDModernization"/>
         </classes>
     </test>
-    <test name="Опасное вещество">
+    <test name="Опасное вещество"><!--+-->
         <classes>
             <class name="myobject.DangerSubstance"/>
         </classes>
@@ -89,7 +89,7 @@
             <class name="myobject.BuildAndConstruction"/>
         </classes>
     </test>
-    <test name="Инцидент">
+    <test name="Инцидент"><!--+-->
         <classes>
             <class name="myobject.Incident"/>
         </classes>
@@ -109,12 +109,12 @@
             <class name="myobject.ExplosiveLoss"/>
         </classes>
     </test>
-    <test name="Документ">
+    <test name="Документ"><!--+-->
         <classes>
             <class name="myobject.Document"/>
         </classes>
     </test>
-    <test name="Мероприятие">
+    <test name="Мероприятие"><!--+-->
         <classes>
             <class name="myobject.Action"/>
         </classes>
@@ -129,37 +129,37 @@
             <class name="myobject.ActionTransferDeadline"/>
         </classes>
     </test>
-    <test name="План">
+    <test name="План"><!--+-->
         <classes>
             <class name="myobject.Plan"/>
         </classes>
     </test>
-    <test name="Предписание">
+    <test name="Предписание"><!--+-->
         <classes>
             <class name="myobject.Prescription"/>
         </classes>
     </test>
-    <test name="Нарушение предписания">
+    <test name="Нарушение предписания"><!--+-->
         <classes>
             <class name="myobject.PrescriptionViolation"/>
         </classes>
     </test>
-    <test name="Протокол ВП">
+    <test name="Протокол ВП"><!--+-->
         <classes>
             <class name="myobject.Protocol"/>
         </classes>
     </test>
-    <test name="Нарушение протокола ВП">
+    <test name="Нарушение протокола ВП"><!--+-->
         <classes>
             <class name="myobject.ProtocolViolation"/>
         </classes>
     </test>
-    <test name="Нормативный документ">
+    <test name="Нормативный документ"><!--+-->
         <classes>
             <class name="myobject.RegulatoryDocuments"/>
         </classes>
     </test>
-    <test name="Тип нормативного документа">
+    <test name="Тип нормативного документа"><!--+-->
         <classes>
             <class name="myobject.RegulatoryDocumentsType"/>
         </classes>

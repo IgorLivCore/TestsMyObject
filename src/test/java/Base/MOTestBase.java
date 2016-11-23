@@ -48,7 +48,7 @@ public class MOTestBase extends TestBase{
         registerWebdriver();
 
         driver.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS);
-        //driver.manage().window().maximize();
+        driver.manage().window().maximize();
         driver.get("http://localhost");
         wait = new WebDriverWait(driver, 200);
         goTo("Вход в myObject");
@@ -57,8 +57,10 @@ public class MOTestBase extends TestBase{
         waitForElementPresent(By.xpath("//div [@class=\"modal fade authWindow in\"]"));
 
 
-        driver.findElement(By.xpath("//input[@name=\"email\"]")).sendKeys("import@test.test");
-        driver.findElement(By.xpath("//input[@name=\"passwd\"]")).sendKeys("1111");
+        driver.findElement(By.xpath("//input[@name=\"email\"]")).sendKeys("ww@ww.ww");
+        driver.findElement(By.xpath("//input[@name=\"passwd\"]")).sendKeys("wwww");
+        //driver.findElement(By.xpath("//input[@name=\"email\"]")).sendKeys("import@test.test");
+        //driver.findElement(By.xpath("//input[@name=\"passwd\"]")).sendKeys("1111");
 
         /*try {
             //input("Email","ww@ww.ww");
@@ -79,7 +81,7 @@ public class MOTestBase extends TestBase{
 
         //driver.switchTo().defaultContent();
         //driver.switchTo().frame(driver.findElements(By.tagName("iframe")).get(0));
-        /*for(int i = 0; i < 10; i++)
+    /*    for(int i = 0; i < 10; i++)
         {
             try{
                 driver.switchTo().defaultContent();

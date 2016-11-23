@@ -24,7 +24,7 @@ public class Incident extends MOTestBase {
     private void goToList() throws Exception{
         goTo("Инциденты","Инциденты");
     }
-
+/*
     @Test(priority=1, groups = { "add" })
     public void testAdd() throws Exception
     {
@@ -124,7 +124,7 @@ public class Incident extends MOTestBase {
         String[] s=checkEmptyFields();
         assertTrue(s.length == 0, "Есть обязательные поля, не подсвеченные как обязательные:\n" + Arrays.asList(s) + "\n" + (s.length == 0 ? "" : getScreenshot("fail")));
     }
-
+*/
     @Test(priority=3, groups = { "add" })
     public void testAddInvestigation() throws Exception
     {
@@ -233,7 +233,7 @@ public class Incident extends MOTestBase {
         //       goTo("Лица, ответственные за допущенные нарушения требований промышленной безопасности");
 //        assertEquals(revisionValue("№ пункта: " + data),  data1,"Данные об ответственных за НС не добавлены"); // из-за кривой верстки не получается достать значение - проверить сложно
     }
-
+/*
     @Test(priority=2, groups = { "edit" })
     public void testEdit() throws Exception
     {
@@ -326,7 +326,7 @@ public class Incident extends MOTestBase {
         String[] s=checkEmptyFields();
         assertTrue(s.length == 0, "Есть обязательные поля, не подсвеченные как обязательные:\n" + Arrays.asList(s) + "\n" + (s.length == 0 ? "" : getScreenshot("fail")));
     }
-
+*/
     @Test(priority=5, groups = { "delete" })
     public void testDelete() throws Exception
     {

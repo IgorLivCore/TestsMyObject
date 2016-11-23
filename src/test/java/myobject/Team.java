@@ -94,7 +94,7 @@ public class Team extends MOTestBase {
     public void testDelete() throws Exception
     {
         operation="удаление";
-        input("Поиск по списку", "ТестСозданиеСП");
+        input("Поиск по списку", "ТестСозданиеСПНаименование");
         selectRow(0);
         data = revisionValue("Наименование");
         delete();

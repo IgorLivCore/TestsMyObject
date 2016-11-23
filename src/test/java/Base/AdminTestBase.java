@@ -1,5 +1,6 @@
 package Base;
 
+import org.junit.Ignore;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementNotVisibleException;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -45,8 +46,8 @@ public class AdminTestBase extends TestBase {
         driver.get("http://admin.myobject");
         wait = new WebDriverWait(driver, 200);
         waitForElementPresent(By.xpath("//*[@class=\"login-form\"]"));
-        input("Логин","qq@qq.qq");
-        input("Пароль", "qqqq");
+        input("Логин","import@test.test");
+        input("Пароль", "1111");
         button("Войти");
 
         waitForElementPresent(By.xpath("//div[@id=\"top-menu\"]"));

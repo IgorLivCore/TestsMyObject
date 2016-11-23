@@ -123,6 +123,42 @@ public class Element extends MOTestBase {
         assertEquals(getValue("Наименование тех. устройства"), data,"ТУ не добавлен в подобъект");
     }
 
+    @Test(priority=2, /*dependsOnMethods="testAdd", */groups = { "edit" })
+    public void testEdit() throws Exception
+    {
+        operation="изменение";
+        selectRow(0);
+        edit();
+
+        input("Наименование", data = "ТестИзменениеПодобъектаНаименование" + curDate());
+        input("Описание", "ТестСозданиеПодобъектаОписание");
+
+        save();
+
+        messageResultOfOperation("подобъект");
+
+        goToList();
+        selectRow(0);
+        edit();
+        assertEquals(getValue("Наименование"), data,"Подобъект не изменен\n" + getScreenshot("fail"));
+    }
+
+    @Test(priority=2, groups = { "add" })
+    public void testEditEmpty() throws Exception
+    {
+        expected_result=false;
+        selectRow(0);
+        edit();
+
+        input("Наименование", "");
+
+        save();
+        messageResultOfOperation("Подобъект");
+
+        String[] s=checkEmptyFields();
+        assertTrue(s.length == 0, "Есть обязательные поля, не подсвеченные как обязательные:\n" + Arrays.asList(s) + "\n" + (s.length == 0 ? "" : getScreenshot("fail")));
+    }
+
     @Test(priority=3,/*dependsOnMethods={"testAddBaC"},*/ groups = { "exclude" })
     public void testDeleteBaC() throws Exception
     {
@@ -174,42 +210,6 @@ public class Element extends MOTestBase {
             edit();
             assertNotEquals(getValue("Наименование тех. устройства"), data, "ТУ не исключен из подобъекта");
         }
-    }
-
-    @Test(priority=2, dependsOnMethods="testAdd", groups = { "edit" })
-    public void testEdit() throws Exception
-    {
-        operation="изменение";
-        selectRow(0);
-        edit();
-
-        input("Наименование", data = "ТестИзменениеПодобъектаНаименование" + curDate());
-        input("Описание", "ТестСозданиеПодобъектаОписание");
-
-        save();
-
-        messageResultOfOperation("подобъект");
-
-        goToList();
-        selectRow(0);
-        edit();
-        assertEquals(getValue("Наименование"), data,"Подобъект не изменен\n" + getScreenshot("fail"));
-    }
-
-    @Test(priority=2, groups = { "add" })
-    public void testEditEmpty() throws Exception
-    {
-        expected_result=false;
-        selectRow(0);
-        edit();
-
-        input("Наименование", "");
-
-        save();
-        messageResultOfOperation("Подобъект");
-
-        String[] s=checkEmptyFields();
-        assertTrue(s.length == 0, "Есть обязательные поля, не подсвеченные как обязательные:\n" + Arrays.asList(s) + "\n" + (s.length == 0 ? "" : getScreenshot("fail")));
     }
 
     @Test(priority=300, groups = { "delete" })
