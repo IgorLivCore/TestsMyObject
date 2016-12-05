@@ -2,7 +2,7 @@ package Listeners;
 
 /**
  * Created by natalia on 16.01.15.
- */
+ *
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
@@ -60,3 +60,4 @@ public class ListenerThatWaitsBeforeAnyAction extends AbstractWebDriverEventList
         }
     }
 }
+*/

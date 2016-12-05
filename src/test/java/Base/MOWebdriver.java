@@ -1,5 +1,5 @@
 package Base;
-import org.apache.xerces.util.SynchronizedSymbolTable;
+//import org.apache.xerces.util.SynchronizedSymbolTable;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.Augmenter;
@@ -320,7 +320,7 @@ public abstract class MOWebdriver {
             else
                 field="/following-sibling::node()//label[contains(text(),\"" + nameField + "\")]";
 
-            /////////System.out.println(field);
+            System.out.println(field);
 
             if (/*nameField.contains("Email")||nameField.contains("Пароль")||*/nameField.contains("Имя")||nameField.contains("Местонахождение")||nameField.contains("Адрес")||
                     nameField.contains("Телефон")||nameField.contains("Номер телефона")||
@@ -885,7 +885,7 @@ public abstract class MOWebdriver {
         }
         return not_empty_fields.toArray(new String[not_empty_fields.size()]);
     }
-
+/**************************************************************************************************/
     public static void setData(String nameField, String value) {
         waitForPageLoad();
         setParent();

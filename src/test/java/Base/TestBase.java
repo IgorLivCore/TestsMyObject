@@ -1,10 +1,11 @@
 package Base;
-
+/*
 import Listeners.ListenerThatHiglilightsElements;
-import Listeners.ListenerThatWaitsBeforeAnyAction;
+import Listeners.ListenerThatWaitsBeforeAnyAction;*/
 import org.openqa.selenium.By;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
+import org.openqa.selenium.support.events.WebDriverEventListener;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
@@ -27,16 +28,23 @@ public abstract class TestBase {
     @BeforeTest(alwaysRun = true) public abstract void setUpTest() throws Exception;
 
     protected void registerWebdriver(){
+
+      //  System.setProperty("webdriver.firefox.bin", "//usr//lib//firefox//firefox");/*запускает но падает*/
+
         DesiredCapabilities browser = DesiredCapabilities.firefox();
         browser.setCapability("browser.cache.disk.enable", false);
         browser.setCapability("browser.cache.memory.enable", false);
         browser.setCapability("browser.cache.offline.enable", false);
         browser.setCapability("network.http.use-cache", false);
 
+
         regularDriver = WebDriverFactory.getDriver(browser);
         driver = new EventFiringWebDriver(regularDriver);
+        //new ListenerThatWaitsBeforeAnyAction(driver,500, TimeUnit.MILLISECONDS)
+        //driver.register(new WebDriverEventListener(driver, 500, TimeUnit.MILLISECONDS) {
+        //});//для замедления
         //driver.register(new ListenerThatWaitsBeforeAnyAction(driver,500, TimeUnit.MILLISECONDS));//для замедления
-        driver.register(new ListenerThatHiglilightsElements(1,100, TimeUnit.MILLISECONDS));//для замедления и подсветки
+        //driver.register(new ListenerThatHiglilightsElements(1,100, TimeUnit.MILLISECONDS));//для замедления и подсветки
     }
 
     @BeforeTest

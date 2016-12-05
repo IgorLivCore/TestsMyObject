@@ -41,7 +41,7 @@ public class Filial extends MOTestBase {
         input("Повтор пароля","testF");
 
         legend="Филиал";
-        input("Полное наименование",data="ТестСозданиеФилиалаПолноеНаименование"+curDate());
+        input("Полное наименование",data="name"+curDate());
         input("Сокращенное наименование","ТСФПН"+curDate());
 
         legend="";
