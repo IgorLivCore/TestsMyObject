@@ -320,17 +320,18 @@ public abstract class MOWebdriver {
             else
                 field="/following-sibling::node()//label[contains(text(),\"" + nameField + "\")]";
 
-            System.out.println(field);
+            //System.out.println(field);
+            System.out.println("\n 1 \n");
 
             if (/*nameField.contains("Email")||nameField.contains("Пароль")||*/nameField.contains("Имя")||nameField.contains("Местонахождение")||nameField.contains("Адрес")||
                     nameField.contains("Телефон")||nameField.contains("Номер телефона")||
                     nameField.contains("Факс")||nameField.contains("Номер факса"))
-            {
+            {System.out.println("\n 2 \n");
                 String[] arr=new String[3];
                 if(value.split("\\-").length>0)//расщепление на строки 1//-2
                     arr=value.split("\\-");
                 for (int i=0;i<arr.length;i++)
-                {
+                {System.out.println("\n 3 \n");
                     if (arr[i]==null)
                         arr[i]="";
                     try {
@@ -353,7 +354,7 @@ public abstract class MOWebdriver {
                     parent + "/following-sibling::node()//*[contains(text(),\"" + nameField + "\")]/following-sibling::*[1]/descendant-or-self::textarea" + ")"));
 
             for(WebElement el:elements)
-            {
+            {System.out.println("\n 4 \n");
                 if (count_fields.get(parent + nameField)>1)
                     el = elements.get(count_fields.get(parent + nameField)-1);
                 try {
@@ -361,11 +362,12 @@ public abstract class MOWebdriver {
                         wait.until(visibilityOf(el));
                         el.click();
                         el.sendKeys(additionalString + value);
+                        //тут надо или добавить на фронте проверку отсутствия символов для поля "Нормативный срок эксплуатации (лет) *", или делать метод проверки тут
                     }
                 }
                 catch (WebDriverException e){
                     scroll(driver.findElement(By.id("view-content")), Integer.parseInt(el.getAttribute("scrollHeight")));
-                    if (el.isDisplayed()) {
+                    if (el.isDisplayed()) {System.out.println("\n 5 \n");
                         wait.until(visibilityOf(el));
                         el.click();
                         el.sendKeys(additionalString + value);
@@ -422,12 +424,12 @@ public abstract class MOWebdriver {
             isSelectByValue =1;
         }
 
-        if (value==null||value.equals(""))
+        if (value==null||value.equals("")||value.equals(0))
             return;
         //кнопочная версия
         wait.until(visibilityOfElementLocated(By.xpath("//label[contains(text(),\"" + nameField + "\")]")));
         if (isElementPresent(By.xpath(parent + "/following-sibling::node()//label[contains(text(),\"" + nameField + "\")]/following-sibling::div[@class=\"my-combobox\"]")))
-        {
+        {   System.out.print("\n1st");//this
             try {
                 elements = driver.findElements(By.xpath("(" + parent + "/following-sibling::node()//label[normalize-space(text())=\"" + nameField + "\"]//following-sibling::div[@class=\"my-combobox\"]" + ")"));
                 for (WebElement el:elements) {
@@ -460,7 +462,7 @@ public abstract class MOWebdriver {
         else
             //select-версия
             if (isElementPresent(By.xpath(parent + "/following-sibling::node()//label[contains(text(),\"" + nameField + "\")]/..//select")))
-            {
+            {System.out.print("\n2st");
                 //по индексу
                 if (isSelectByValue ==0)
                     new Select(driver.findElement(By.xpath(parent + "/following-sibling::node()//label[contains(text(),\"" + nameField + "\")]/..//select"))).selectByIndex(Integer.parseInt(value));
@@ -473,6 +475,8 @@ public abstract class MOWebdriver {
                 if (isElementPresent(By.xpath(parent + "/following-sibling::node()//label[contains(text(),\"" + nameField + "\")]/..[//button[contains(@class,\"choose-btn\")] and @style=\"\"]")) ||
                         isElementPresent(By.xpath(parent + "/following-sibling::node()//label[contains(text(),\"" + nameField + "\")]/..//button[contains(@class,\"choose-btn\")]")))
                 {
+
+
                     try{
                         elements=driver.findElements(By.xpath(parent + "/following-sibling::node()//label[contains(text(),\"" + nameField + "\")]/..//button[contains(@class,\"choose-btn\")]"));
                         for(WebElement el:elements)
@@ -483,14 +487,15 @@ public abstract class MOWebdriver {
                                 el.click();
                                 active_view="right-view";
                                 //по индексу
-                                wait.until(visibilityOfElementLocated(By.xpath("//div[@id=\"" + active_view + "\"]//button[contains(@class,\"refresh\")]/span")));
+                                wait.until(visibilityOfElementLocated(By.xpath("//div[@id=\"" + active_view + "\"]//button[contains(@class,\"refresh\")]/span")));//ждем загрузки кнопки "Закрыть"
                                 if (isSelectByValue ==0)
-                                    selectRow(Integer.parseInt(value));
+                                    selectRow(Integer.parseInt(value)); //выбрать строку, тут
                                     //по значению
                                 else {
                                     input("Поиск по списку",value);
                                     selectRow(0);
                                 }
+                                System.out.print("999");
                                 active_view="workspace";
                                 break;
                             }
@@ -583,7 +588,7 @@ public abstract class MOWebdriver {
         if(!getValue(nameField).equals("false"))
             driver.findElement(By.xpath(parent + "/..//*[contains(normalize-space(label),\"" + nameField + "\") or contains(normalize-space(span),\"" + nameField + "\")]//input")).click();
     }
-
+/////////////////////////////////////switcher
     public static void switcher(String nameField,String value)
     {
         setData(nameField, value);
@@ -731,6 +736,7 @@ public abstract class MOWebdriver {
         for(int i=0;i<10;i++)
             try{
                 waitForPageLoad();
+
                 if(isElementPresent(By.xpath("//div[@id=\"" + active_view + "\"]//div[@id=\"grid-rows\" or @class=\"grid-rows\"]//span[contains(@class,\"expand-button\")]")))
                     //если древовидная структура списка
                     driver.findElement(By.xpath("//div[@id=\"" + active_view + "\"]//div[@id=\"grid-rows\" or @class=\"grid-rows\"]/div[" + (index+1) + "][@class]/div")).click();
@@ -739,9 +745,15 @@ public abstract class MOWebdriver {
                 {//делаем через Actions клик не в середину, чтобы случаем не кликнуть по какой-нибудь ссылке
                     //wait.until(visibilityOfElementLocated(By.xpath("//div[@id=\"" + active_view + "\"]//div[@id=\"grid-rows\" or @class=\"grid-rows\"]/div[" + (index+1) + "]")));
                     //wait.until(elementToBeClickable(By.xpath("//div[@id=\"" + active_view + "\"]//div[@id=\"grid-rows\" or @class=\"grid-rows\"]/div[" + (index+1) + "]")));
-                    TimeUnit.SECONDS.sleep(1);//magic - с ожиданиями валится при редактировании нар.протокола
+                    //TimeUnit.SECONDS.sleep(1);//magic - с ожиданиями валится при редактировании нар.протокола
+
+                    System.out.print("65556__"); System.out.print(active_view);
+
                     Actions builder = new Actions(driver);
-                    builder.moveToElement(driver.findElement(By.xpath("//div[@id=\"" + active_view + "\"]//div[@id=\"grid-rows\" or @class=\"grid-rows\"]/div[" + (index+1) + "]")), 1, 1).click().build().perform();
+
+                    //builder.moveToElement(driver.findElement(By.xpath("//div[@id=\"" + active_view + "\"]//div[@id=\"grid-rows\" or @class=\"grid-rows\"]/div[index+1]")), 1, 1).click().build().perform();
+                    driver.findElement(By.xpath("//div[@id=\"" + active_view + "\"]//div[@id=\"grid-rows\" or @class=\"grid-rows\"]/div[" + (index+1) + "][@class]/div")).click();
+                    System.out.print("65556__2"); System.out.print(active_view);
                 }
                 waitForPageLoad();
                 return;
@@ -749,6 +761,7 @@ public abstract class MOWebdriver {
             catch (IndexOutOfBoundsException e) {
                 if(isListEmpty())
                     fail("Список пуст!" + getScreenshot("fail"));
+                System.out.print("65558");
             }
             catch (StaleElementReferenceException e){        }
         fail("Не удалось выбрать!\n" + getScreenshot("fail"));
@@ -912,7 +925,7 @@ public abstract class MOWebdriver {
             }
         count_fields.put(parent + nameField, count_fields.containsKey(parent + nameField) ? count_fields.get(parent + nameField) + 1 : 1);
     }
-    //
+
     /*public static void setData(String nameField, String inputType, String value) {
         waitForPageLoad();
         setParent();
